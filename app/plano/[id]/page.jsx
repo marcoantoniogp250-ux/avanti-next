@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { getPlano, getOperadora } from '../../data/operadoras';
 import { getHospital } from '../../data/hospitais';
-import { whatsappLink } from '../../../components/WhatsAppButton';
+import { whatsappLink } from '../../../lib/whatsapp';
 import LeadFunnelModal from '../../../components/LeadFunnelModal';
 
 export default function PlanoDetalhe({ params }) {

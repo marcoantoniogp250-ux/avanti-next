@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { operadoras } from '../data/operadoras';
-import { whatsappLink } from '../../components/WhatsAppButton';
+import { whatsappLink } from '../../lib/whatsapp';
 
 const WHATSAPP_BASE = 'https://wa.me/5521992340607';
 

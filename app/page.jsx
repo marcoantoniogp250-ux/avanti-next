@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { operadoras, planos } from './data/operadoras';
-import { whatsappLink } from '../components/WhatsAppButton';
+import { whatsappLink } from '../lib/whatsapp';
 
 export const metadata = {
     title: 'Avanti Corretora | Planos de Saúde no Rio de Janeiro',

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { getOperadora, getPlanosByOperadora } from '../../data/operadoras';
-import { whatsappLink } from '../../../components/WhatsAppButton';
+import { whatsappLink } from '../../../lib/whatsapp';
 
 export default function OperadoraDetalhe({ params }) {
     const { id } = params;

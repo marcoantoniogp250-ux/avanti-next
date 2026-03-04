@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { whatsappLink } from './WhatsAppButton';
+import { whatsappLink } from '../lib/whatsapp';
 
 export default function LeadFunnelModal({ isOpen, onClose, planoNome, operadoraNome }) {
     const [tipo, setTipo] = useState('');

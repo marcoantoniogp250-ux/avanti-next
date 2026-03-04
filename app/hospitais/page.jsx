@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { hospitais, cidades } from '../data/hospitais';
 import { getPlanosByHospital } from '../data/operadoras';
-import { whatsappLink } from '../../components/WhatsAppButton';
+import { whatsappLink } from '../../lib/whatsapp';
 
 const FALLBACK_POOL = [
     "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80",
