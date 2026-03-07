@@ -8,23 +8,23 @@ export default function Footer() {
             {/* Faixa dourada superior */}
             <div className="footer-gold-bar" />
 
+            {/* Operadoras strip */}
+            <div className="footer-ops-strip">
+                <div className="container">
+                    <div className="footer-ops-inner">
+                        {['Amil', 'SulAmérica', 'Bradesco Saúde', 'Porto Seguro', 'Unimed', 'NotreDame'].map(op => (
+                            <span key={op} className="footer-ops-item">{op}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
             <div className="container">
                 <div className="footer-grid">
                     {/* Coluna 1: Identidade da marca */}
                     <div className="footer-brand">
-                        {/* Mini logo em SVG */}
-                        <div className="footer-logo">
-                            <svg width="48" height="48" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="44" height="44" rx="10" fill="#BB8C3B" />
-                                <text x="50%" y="58%" dominantBaseline="middle" textAnchor="middle"
-                                    fill="#163854" fontSize="24" fontWeight="900" fontFamily="Inter, sans-serif">A</text>
-                                <line x1="28" y1="30" x2="38" y2="18" stroke="#163854" strokeWidth="2.5" strokeLinecap="round" />
-                                <polygon points="38,18 33,19 37,23" fill="#163854" />
-                            </svg>
-                            <div>
-                                <div className="footer-logo-avanti">AVANTI</div>
-                                <div className="footer-logo-sub">CORRETORA DE SAÚDE</div>
-                            </div>
+                            <div className="footer-logo">
+                            <img src="/logo-footer.png" alt="Avanti Corretora" className="footer-logo-img" />
                         </div>
                         <p className="footer-desc">
                             Sua parceira na escolha do plano de saúde ideal. Encontramos as melhores opções
@@ -32,9 +32,8 @@ export default function Footer() {
                         </p>
                         <div className="footer-contact">
                             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="footer-phone">
-                                📞 (21) 99234-0607
+                                (21) 99234-0607
                             </a>
-                            <p className="footer-hours">Seg–Sex 9h–18h &nbsp;|&nbsp; Sáb 9h–13h</p>
                         </div>
                     </div>
 
@@ -63,18 +62,19 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Coluna 4: CTA WhatsApp */}
+                    {/* Coluna 4: CTA */}
                     <div className="footer-col footer-cta-col">
                         <h4 className="footer-col-title">Fale Conosco</h4>
                         <p className="footer-cta-text">
-                            Atendimento personalizado. Cotação grátis em minutos.
+                            Cotação gratuita em minutos. Nosso corretor encontra o plano ideal para você.
                         </p>
-                        <a href={WHATSAPP} target="_blank" rel="noreferrer" className="btn btn-whatsapp footer-cta-btn">
+                        <a href={WHATSAPP} target="_blank" rel="noreferrer" className="footer-cta-btn">
                             💬 Cotar no WhatsApp
                         </a>
                         <div className="footer-badges">
-                            <span>🏆 +5.000 clientes</span>
-                            <span>✅ Credenciado ANS</span>
+                            <span>+5.000 famílias atendidas no RJ</span>
+                            <span>+200 hospitais credenciados</span>
+                            <span>Seg–Sex 9h–18h · Sáb 9h–13h</span>
                         </div>
                     </div>
                 </div>

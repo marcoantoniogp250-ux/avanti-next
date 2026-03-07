@@ -1115,18 +1115,10 @@ export const hospitais = [
         nome: "Grupo Bronstein",
         cidade: "Rio de Janeiro",
         bairro: "Em atualização",
-        id: "semiu",
-        nome: "SEMIU (serviço de urgência)",
-        cidade: "Rio de Janeiro",
-        bairro: "Em atualização",
         endereco: "Rio de Janeiro",
         premium: false,
-        especialidades: [
-            "Clínica Geral",
-            "Emergência",
-            "Especialidades"
-        ],
-        descricao: "Hospital referenciado da nossa rede credenciada atualizada."
+        especialidades: ["Diagnóstico por Imagem", "Laboratório", "Exames"],
+        descricao: "Centro de diagnóstico credenciado na rede SulAmérica."
     },
     {
         id: "sao-lucas-niteroi",
@@ -1270,26 +1262,6 @@ export const hospitais = [
         descricao: "Clínica de oftalmologia credenciada pela Unimed Leste Fluminense em São Gonçalo."
     },
     {
-        id: "quinta-dor",
-        nome: "Hospital Quinta D'Or",
-        cidade: "Rio de Janeiro",
-        bairro: "São Cristóvão",
-        endereco: "Rio de Janeiro",
-        premium: true,
-        especialidades: ["Cardiologia", "Oncologia", "Neurologia", "Cirurgia"],
-        descricao: "Hospital premium da Rede D'Or em São Cristóvão, referência nacional em alta complexidade."
-    },
-    {
-        id: "perinatal-barra",
-        nome: "Clínica Perinatal Barra",
-        cidade: "Rio de Janeiro",
-        bairro: "Barra da Tijuca",
-        endereco: "Barra da Tijuca",
-        premium: true,
-        especialidades: ["Obstetrícia", "Neonatologia", "Maternidade", "Pediatria"],
-        descricao: "Referência em maternidade de alto padrão na Barra da Tijuca."
-    },
-    {
         id: "clinica-gavea",
         nome: "Clínica da Gávea",
         cidade: "Rio de Janeiro",
@@ -1298,46 +1270,6 @@ export const hospitais = [
         premium: false,
         especialidades: ["Clínica Geral", "Especialidades", "Diagnóstico"],
         descricao: "Clínica médica de atendimento ambulatorial credenciada Unimed FERJ."
-    },
-    {
-        id: "obra-portuguesa",
-        nome: "Obra Portuguesa de Assistência",
-        cidade: "Rio de Janeiro",
-        bairro: "Catete",
-        endereco: "Rio de Janeiro",
-        premium: false,
-        especialidades: ["Clínica Geral", "Cirurgia", "Emergência"],
-        descricao: "Hospital filantrópico de tradição no Rio de Janeiro, credenciado pela Unimed FERJ."
-    },
-    {
-        id: "casa-evangelica",
-        nome: "Hospital Casa Evangélico",
-        cidade: "Rio de Janeiro",
-        bairro: "Em atualização",
-        endereco: "Rio de Janeiro",
-        premium: false,
-        especialidades: ["Clínica Geral", "Cirurgia", "Maternidade"],
-        descricao: "Hospital de tradição com atendimento qualificado, credenciado Unimed FERJ."
-    },
-    {
-        id: "ilha-governador",
-        nome: "Hospital Ilha do Governador",
-        cidade: "Rio de Janeiro",
-        bairro: "Ilha do Governador",
-        endereco: "Rio de Janeiro",
-        premium: false,
-        especialidades: ["Clínica Geral", "Emergência", "Pediatria"],
-        descricao: "Hospital regional da Ilha do Governador, credenciado Unimed FERJ."
-    },
-    {
-        id: "casa-santa-cruz",
-        nome: "Hospital Casa Santa Cruz",
-        cidade: "Rio de Janeiro",
-        bairro: "Santa Cruz",
-        endereco: "Rio de Janeiro",
-        premium: false,
-        especialidades: ["Clínica Geral", "Emergência", "Cirurgia"],
-        descricao: "Hospital de Santa Cruz credenciado pela rede Unimed FERJ."
     },
     // --- HOSPITAIS NOTREDAME INTERMÉDICA ---
     {

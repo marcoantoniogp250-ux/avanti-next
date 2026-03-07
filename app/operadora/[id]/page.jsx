@@ -1,31 +1,37 @@
-'use client';
-import { useState } from 'react';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getOperadora, getPlanosByOperadora } from '../../data/operadoras';
 import { whatsappLink } from '../../../lib/whatsapp';
+import Breadcrumb from '../../../components/Breadcrumb';
 
-export default function OperadoraDetalhe({ params }) {
-    const { id } = params;
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+    const op = getOperadora(id);
+    if (!op) return { title: 'Operadora não encontrada' };
+    return {
+        title: `Planos ${op.nome} no Rio de Janeiro`,
+        description: `Compare todos os planos ${op.nome} disponíveis no RJ. ${op.descricao} Cotação gratuita com a Avanti Corretora.`,
+        alternates: { canonical: `/operadora/${id}` },
+    };
+}
+
+export default async function OperadoraDetalhe({ params }) {
+    const { id } = await params;
     const op = getOperadora(id);
     const planosOp = getPlanosByOperadora(id);
 
-    if (!op) return (
-        <div className="page-header">
-            <div className="container">
-                <h1>Operadora não encontrada</h1>
-                <p><Link href="/operadoras" style={{ color: 'var(--dourado)' }}>← Voltar para operadoras</Link></p>
-            </div>
-        </div>
-    );
+    if (!op) notFound();
 
     return (
         <>
             <div className="page-header">
                 <div className="container">
-                    <p style={{ marginBottom: 8 }}>
-                        <Link href="/operadoras" style={{ color: 'var(--dourado)' }}>← Operadoras</Link>
-                    </p>
-                    <h1>{op.nome}</h1>
+                    <Breadcrumb items={[
+                        { label: 'Início', href: '/' },
+                        { label: 'Operadoras', href: '/operadoras' },
+                        { label: `Planos ${op.nome}` },
+                    ]} />
+                    <h1>Planos {op.nome} no Rio de Janeiro</h1>
                     <p>{op.descricao}</p>
                 </div>
             </div>

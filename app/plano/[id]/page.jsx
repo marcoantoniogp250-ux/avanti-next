@@ -1,24 +1,28 @@
-'use client';
-import { useState } from 'react';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getPlano, getOperadora } from '../../data/operadoras';
 import { getHospital } from '../../data/hospitais';
 import { whatsappLink } from '../../../lib/whatsapp';
-import LeadFunnelModal from '../../../components/LeadFunnelModal';
+import PlanoModalButton from './PlanoModalButton';
+import Breadcrumb from '../../../components/Breadcrumb';
 
-export default function PlanoDetalhe({ params }) {
-    const { id } = params;
+export async function generateMetadata({ params }) {
+    const { id } = await params;
     const plano = getPlano(id);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    if (!plano) return { title: 'Plano não encontrado' };
+    const op = getOperadora(plano.operadoraId);
+    return {
+        title: `${plano.nome} — ${op?.nome} no Rio de Janeiro`,
+        description: `${plano.resumo} Cotação gratuita do ${plano.nome} da ${op?.nome} com a Avanti Corretora no Rio de Janeiro.`,
+        alternates: { canonical: `/plano/${id}` },
+    };
+}
 
-    if (!plano) return (
-        <div className="page-header">
-            <div className="container">
-                <h1>Plano não encontrado</h1>
-                <p><Link href="/operadoras" style={{ color: 'var(--dourado)' }}>← Voltar para operadoras</Link></p>
-            </div>
-        </div>
-    );
+export default async function PlanoDetalhe({ params }) {
+    const { id } = await params;
+    const plano = getPlano(id);
+
+    if (!plano) notFound();
 
     const op = getOperadora(plano.operadoraId);
     const hospitaisPlano = plano.hospitais.map(hId => getHospital(hId)).filter(Boolean);
@@ -28,9 +32,12 @@ export default function PlanoDetalhe({ params }) {
         <>
             <div className="plano-detalhe-header">
                 <div className="container">
-                    <p style={{ marginBottom: 8 }}>
-                        <Link href={`/operadora/${op?.id}`} style={{ color: 'var(--dourado)' }}>← {op?.nome}</Link>
-                    </p>
+                    <Breadcrumb items={[
+                        { label: 'Início', href: '/' },
+                        { label: 'Operadoras', href: '/operadoras' },
+                        { label: op?.nome, href: `/operadora/${op?.id}` },
+                        { label: plano.nome },
+                    ]} />
                     <h1>{plano.nome}</h1>
                     <p style={{ color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>{plano.resumo}</p>
                     <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
@@ -70,6 +77,18 @@ export default function PlanoDetalhe({ params }) {
                                 ))}
                             </div>
 
+                            {/* DESCRIÇÃO EDITORIAL */}
+                            {plano.descricao && (
+                                <div style={{ marginBottom: 40 }}>
+                                    <h2 style={{ marginBottom: 20 }}>📌 Sobre o {plano.nome}</h2>
+                                    {plano.descricao.map((paragrafo, i) => (
+                                        <p key={i} style={{ color: 'var(--cinza-6)', lineHeight: 1.85, marginBottom: 16, fontSize: '0.95rem' }}>
+                                            {paragrafo}
+                                        </p>
+                                    ))}
+                                </div>
+                            )}
+
                             {/* HOSPITAIS */}
                             <h2 style={{ marginTop: 40, marginBottom: 20 }}>🏥 Hospitais Cobertos</h2>
                             <div className="grid-2">
@@ -98,9 +117,7 @@ export default function PlanoDetalhe({ params }) {
                                 <p style={{ fontSize: '0.9rem', color: 'var(--cinza-6)', marginBottom: '20px', lineHeight: '1.5' }}>
                                     Faça sua cotação com nossa equipe e descubra descontos exclusivos de até <strong>40% para CNPJ/MEI</strong>.
                                 </p>
-                                <button onClick={() => setIsModalOpen(true)} className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: 12, padding: '15px' }}>
-                                    📊 Ver Tabela Atualizada
-                                </button>
+                                <PlanoModalButton planoNome={plano.nome} operadoraNome={op?.nome} />
                             </div>
 
                             <div className="card" style={{ marginTop: 16, padding: 20, textAlign: 'center' }}>
@@ -115,13 +132,6 @@ export default function PlanoDetalhe({ params }) {
                         </div>
                     </div>
                 </div>
-
-                <LeadFunnelModal
-                    isOpen={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    planoNome={plano.nome}
-                    operadoraNome={op?.nome}
-                />
             </section>
         </>
     );

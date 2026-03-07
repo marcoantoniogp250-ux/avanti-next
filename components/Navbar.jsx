@@ -10,7 +10,7 @@ function AvantiLogo({ size = 44 }) {
         <svg width={size} height={size} viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="44" height="44" rx="10" fill="#BB8C3B" />
             <text x="50%" y="58%" dominantBaseline="middle" textAnchor="middle"
-                fill="#163854" fontSize="24" fontWeight="900" fontFamily="Inter, sans-serif">
+                fill="#163854" fontSize="24" fontWeight="800" fontFamily="Syne, sans-serif">
                 A
             </text>
             <line x1="28" y1="30" x2="38" y2="18" stroke="#163854" strokeWidth="2.5" strokeLinecap="round" />
@@ -41,28 +41,33 @@ export default function Navbar() {
 
             <div className="nav-container">
                 <Link href="/" className="nav-logo">
-                    <AvantiLogo size={44} />
-                    <div className="nav-logo-text">
-                        <span className="nav-logo-avanti">AVANTI</span>
-                        <small className="nav-logo-corretora">CORRETORA</small>
-                    </div>
+                    <img src="/logo.png" alt="Avanti Corretora" className="nav-logo-img" />
                 </Link>
 
                 <ul className={`nav-links ${open ? 'open' : ''}`}>
                     <li><Link href="/" className={isActive('/')}>Início</Link></li>
                     <li><Link href="/operadoras" className={isActive('/operadoras')}>Operadoras</Link></li>
                     <li><Link href="/hospitais" className={isActive('/hospitais')}>Hospitais</Link></li>
+                    <li><Link href="/seguro-de-carro" className={isActive('/seguro-de-carro')}>Seguro Auto</Link></li>
                     <li><Link href="/duvidas" className={isActive('/duvidas')}>Dúvidas</Link></li>
                     <li><Link href="/contato" className={isActive('/contato')}>Contato</Link></li>
                     <li>
                         <a href={WHATSAPP} target="_blank" rel="noreferrer" className="nav-cta">
-                            📋 Fazer Cotação
+                            Fazer Cotação
                         </a>
                     </li>
                 </ul>
 
-                <button className="nav-mobile-btn" onClick={() => setOpen(!open)} aria-label="Menu">
-                    {open ? '✕' : '☰'}
+                <button className="nav-mobile-btn" onClick={() => setOpen(!open)} aria-label={open ? 'Fechar menu' : 'Abrir menu'}>
+                    {open ? (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                    ) : (
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                    )}
                 </button>
             </div>
         </nav>
